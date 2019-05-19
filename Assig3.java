@@ -486,27 +486,12 @@ class Deck
           }
         }
      }
-   }
-   /*
-   public void init(int numPacks)
-   {
-      this.cards = new Card[numPacks * 52];
-      int cardNumber = 0;
-      while (numPacks > 0)
-      {
-         char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
-         for (int i = 0; i < 4; i++)
-         {
-           for (int j = 0; j < cardVal.length; j++)
-           {
-              cards[cardNumber] = new Card(cardVal[j], Card.Suit.values()[i]);
-              cardNumber++;
-           }
-         }
-         numPacks--;
-      }
-   }
-   */
+   } 
+   
+   /** initialize and repopulate cards[]
+    * 
+    * @param numPacks
+    */
    public void init(int numPacks)
    {
       this.numPacks = numPacks;
@@ -531,6 +516,8 @@ class Deck
          return;
    }
    
+   /** shuffle cards[]
+    */
    public void shuffle()
    {
       Random shuffling = new Random();
@@ -543,7 +530,9 @@ class Deck
       }
    }
    
-   // An accessor for the int, topCard (no mutator.)
+   /** An accessor for the int, topCard (no mutator.)
+    * @return topCard
+    */
    public int getTopCard()
    {
       topCard = 52 * numPacks;
@@ -567,8 +556,10 @@ class Deck
       return cards[k];
    }
    
-   // returns and removes the card in the top occupied position of cards[].
-   // Make sure there are still cards available.
+   /** returns and removes the card in the top occupied position of cards[].
+    * Make sure there are still cards available.
+    * @return
+    */
    public Card dealCard() 
    { 
       if(topCard == 0)
