@@ -495,16 +495,27 @@ class Deck
       while (numPacks > 0)
       {
          char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
-           for (int i = 0; i < 4; i++)
+         for (int i = 0; i < 4; i++)
+         {
+           for (int j = 0; j < cardVal.length; j++)
            {
-             for (int j = 0; j < cardVal.length; j++)
-             {
-               cards[cardNumber] = new Card(cardVal[j], Card.Suit.values()[i]);
-               cardNumber++;
-             }
+              cards[cardNumber] = new Card(cardVal[j], Card.Suit.values()[i]);
+              cardNumber++;
            }
-           numPacks--;
+         }
+         numPacks--;
       }
    }
    
+   public void shuffle()
+   {
+      Random shuffling = new Random();
+      for (int i = 0; i < cards.length; i++)
+      {
+         int randomPosition = shuffling.nextInt(cards.length);
+         Card temp = cards[i];
+         cards[i] = cards[randomPosition];
+         cards[randomPosition] = temp;
+      }
+   }
 }
