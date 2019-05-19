@@ -487,7 +487,7 @@ class Deck
         }
      }
    }
-   
+   /*
    public void init(int numPacks)
    {
       this.cards = new Card[numPacks * 52];
@@ -506,6 +506,30 @@ class Deck
          numPacks--;
       }
    }
+   */
+   public void init(int numPacks)
+   {
+      this.numPacks = numPacks;
+      getTopCard();
+      
+      if((topCard) <= MAX_CARDS && numPacks != 0)
+      {
+         cards = new Card[topCard];
+         for(int k = 0; k < cards.length; k++)
+            cards[k] = new Card();
+         
+         // re-populate cards[] with the standard 52 × numPacks cards
+         for(int k = 0; k < numPacks; k++)
+         {
+            for(int i = (52 * k), j = 0; i < (52 * k + 52); i++, j++)
+            {
+               cards[i] = masterPack[j];
+            }
+         }
+      }
+      else
+         return;
+   }
    
    public void shuffle()
    {
@@ -519,9 +543,41 @@ class Deck
       }
    }
    
-   public Card dealCard()
+   // An accessor for the int, topCard (no mutator.)
+   public int getTopCard()
    {
-      if (cards.length > 0)
-      topcard = cards[cards.length - 1]
+      topCard = 52 * numPacks;
+      return topCard;
+   }
+   
+   /**
+    * Accessor for an individual card
+    * Returns a card with errorFlag = true if k is bad
+    * 
+    * @return String entireHand
+    */
+   public Card inspectCard(int k)
+   {
+      if (k >= topCard)
+      {
+         // make card with errorFlag = true
+         Card badCard = new Card(true);
+         return badCard;
+      }
+      return cards[k];
+   }
+   
+   // returns and removes the card in the top occupied position of cards[].
+   // Make sure there are still cards available.
+   public Card dealCard() 
+   { 
+      if(topCard == 0)
+         return null;
+      
+      Card remCard = cards[topCard - 1];
+      cards[topCard - 1] = null; 
+      topCard-- ;
+      
+      return remCard;
    }
 }
