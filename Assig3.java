@@ -441,59 +441,68 @@ class Deck
    /** Define a public final int value like MAX_CARDS, and initialize it to 
     * allow a maximum of six packs (6×52 cards).
     */
-	public final int MAX_CARDS = 6 * 52;
-	
-	private static Card[] masterPack;
-	private Card[] cards;
-	private int topCard;
-	private int numPacks;
-	private boolean haveAllocatedMasterPack = false;
-	
+   public final int MAX_CARDS = 6 * 52;
+   
+   private static Card[] masterPack;
+   private Card[] cards;
+   private int topCard;
+   private int numPacks;
+   public static boolean haveAllocatedMasterPack = false;
+   
 /** constructors that populate the arrays and assigns initial values to
  *  members. Overload so that if no parameters are passed, 1 pack is assumed.
  */ 
-	public Deck(int numPacks)
-	{
-	   this.numPacks = numPacks;
-	   init(numPacks);
-	   Deck.masterPack = new Card[52];
-	   allocateMasterPack();
-	   haveAllocatedMasterPack = true;
-	}
-	
-	public Deck()
-	{
+   public Deck(int numPacks)
+   {
+      this.numPacks = numPacks;
+      init(numPacks);
+      Deck.masterPack = new Card[52];
+      allocateMasterPack();
+      haveAllocatedMasterPack = true;
+   }
+   
+   public Deck()
+   {
       this.numPacks = 1;
       init(numPacks);
       Deck.masterPack = new Card[52];
       allocateMasterPack();
       haveAllocatedMasterPack = true;
-	}
-		
-	/** this is a private method that will be called by the constructor; will not 
-	 *  allow itself to be executed more than once
-	 */
-	private static void allocateMasterPack()
-	{
-     if !(haveAllocatedMasterPack)
+   }
+      
+   /** this is a private method that will be called by the constructor; will not 
+    *  allow itself to be executed more than once
+    */
+   private static void allocateMasterPack()
+   {
+     if (!haveAllocatedMasterPack)
      {
-   	  char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
-   	  for (int i = 0; i < 4; i++)
-   	  {
-   	    for (int j = 0; j < cardVal.length; j++)
-   	    {
-   	      masterPack[i * cardVal.length + j] = new Card(cardVal[j], Card.Suit.values()[i]);
-   	    }
-   	  }
+        char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
+        for (int i = 0; i < 4; i++)
+        {
+          for (int j = 0; j < cardVal.length; j++)
+          {
+            masterPack[i * cardVal.length + j] = new Card(cardVal[j], Card.Suit.values()[i]);
+          }
+        }
      }
-	}
-	
-	public void init(int numpacks)
-	{
-	   while (numPacks > 0)
-	   {
-	      
-	   }
-	}
+   }
+   
+   public void init(int numpacks)
+   {
+      int cardNumber = 0;
+      while (numPacks > 0)
+      {
+         char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
+           for (int i = 0; i < 4; i++)
+           {
+             for (int j = 0; j < cardVal.length; j++)
+             {
+               cards[cardNumber] = new Card(cardVal[j], Card.Suit.values()[i]);
+               cardNumber++;
+             }
+           }
+      }
+   }
    
 }
