@@ -455,6 +455,16 @@ class Deck
 	public Deck(int numPacks)
 	{
 	   this.numPacks = numPacks;
+	   Deck.cards = new Card[numPacks * 52];
+	   
+	   char[] cardValDeck = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
+      for (int i = 0; i < 4; i++)
+      {
+        for (int j = 0; j < cardValDeck.length; j++)
+        {
+          card[i * cardValDeck.length + j] = new Card(cardValDeck[j], Card.Suit.values()[i]);
+        }
+      }
 	   Deck.masterPack = new Card[52];
 	   allocateMasterPack();
 	   haveAllocatedMasterPack = true;
