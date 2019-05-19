@@ -470,10 +470,11 @@ class Deck
       haveAllocatedMasterPack = true;
    }
       
-   /** this is a private method that will be called by the constructor; will not 
-    *  allow itself to be executed more than once
+  
+   /** initialize and repopulate cards[]
+    * 
+    * @param numPacks
     */
-   
    public void init(int numPacks)
    {
       this.numPacks = numPacks;
@@ -498,6 +499,8 @@ class Deck
          return;
    }
    
+   /** shuffle cards[]
+    */
    public void shuffle()
    {
       Random shuffling = new Random();
@@ -510,7 +513,9 @@ class Deck
       }
    }
    
-   // An accessor for the int, topCard (no mutator.)
+   /** An accessor for the int, topCard (no mutator.)
+    * @return topCard
+    */
    public int getTopCard()
    {
       topCard = 52 * numPacks;
@@ -534,8 +539,10 @@ class Deck
       return cards[k];
    }
    
-   // returns and removes the card in the top occupied position of cards[].
-   // Make sure there are still cards available.
+   /** returns and removes the card in the top occupied position of cards[].
+    * Make sure there are still cards available.
+    * @return
+    */
    public Card dealCard() 
    { 
       if(topCard == 0)
@@ -548,6 +555,9 @@ class Deck
       return remCard;
    }
    
+   /** this is a private method that will be called by the constructor; will not 
+    *  allow itself to be executed more than once
+    */
    private static void allocateMasterPack()
    {
 	   int m, n, i;
