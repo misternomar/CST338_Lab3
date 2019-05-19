@@ -438,11 +438,37 @@ class Hand
  */
 class Deck
 {
-   public static final int MAX_CARDS = 312;
-   
-   private static Card [] masterPack;
-   
-   private Card[] cards;
-   private int topCard;
+	// Define a public final int value like MAX_CARDS, and initialize it to allow a 
+	// maximum of six packs (6×52 cards).
+	public final int MAX_CARDS = 6 * 52;
+	
+	private static Card[] masterPack;
+	private Card[] cards;
+	private int topCard;
+	private int numPacks;
+	
+	// constructor that populates the arrays and assigns initial values to members.  
+	// Overload so that if no parameters are passed, 1 pack is assumed. 
+	Deck(int numPacks)
+	{
+	  this.numPacks = numPacks;
+	  Deck.masterPack = new Card[52];
+	  allocateMasterPack();
+	}
+	
+	// this is a private method that will be called by the constructor; will not allow itself 
+	// to be executed more than once
+	private static void allocateMasterPack()
+	{
+	  char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
+	  
+	  for (int i = 0; i < 4; i++)
+	  {
+	    for (int j = 0; j < cardVal.length; j++)
+	    {
+	      masterPack[i * cardVal.length + j] = new Card(cardVal[j], Card.Suit.values()[i]);
+	    }
+	  }
+	}
    
 }
