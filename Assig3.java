@@ -473,25 +473,7 @@ class Deck
    /** this is a private method that will be called by the constructor; will not 
     *  allow itself to be executed more than once
     */
-   private static void allocateMasterPack()
-   {
-     if (!haveAllocatedMasterPack)
-     {
-        char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
-        for (int i = 0; i < 4; i++)
-        {
-          for (int j = 0; j < cardVal.length; j++)
-          {
-            masterPack[i * cardVal.length + j] = new Card(cardVal[j], Card.Suit.values()[i]);
-          }
-        }
-     }
-   } 
    
-   /** initialize and repopulate cards[]
-    * 
-    * @param numPacks
-    */
    public void init(int numPacks)
    {
       this.numPacks = numPacks;
@@ -516,8 +498,6 @@ class Deck
          return;
    }
    
-   /** shuffle cards[]
-    */
    public void shuffle()
    {
       Random shuffling = new Random();
@@ -530,9 +510,7 @@ class Deck
       }
    }
    
-   /** An accessor for the int, topCard (no mutator.)
-    * @return topCard
-    */
+   // An accessor for the int, topCard (no mutator.)
    public int getTopCard()
    {
       topCard = 52 * numPacks;
@@ -556,10 +534,8 @@ class Deck
       return cards[k];
    }
    
-   /** returns and removes the card in the top occupied position of cards[].
-    * Make sure there are still cards available.
-    * @return
-    */
+   // returns and removes the card in the top occupied position of cards[].
+   // Make sure there are still cards available.
    public Card dealCard() 
    { 
       if(topCard == 0)
@@ -570,5 +546,42 @@ class Deck
       topCard-- ;
       
       return remCard;
+   }
+   
+   private static void allocateMasterPack()
+   {
+	   int m, n, i;
+	   char value;
+	   Card.Suit suit;
+	   
+	   if (haveAllocatedMasterPack)
+		   return;
+	   
+	   haveAllocatedMasterPack = true;
+	   
+	   // allocate masterPack
+	   masterPack = new Card[52];
+	   
+	   for (m = 0; m < 52; m++)
+	     masterPack[m] = new Card();
+	   
+	   i = 52 / 4; // number of values per suit
+	   
+	   for (m = 0; m < 4; m++)
+	   {
+	     suit = Card.Suit.values()[m];
+	     
+	     // set all the values for the suit defined
+	     // start with number cards
+	     for (value = '2', n = 1; value <= 9; value++, n++)
+	    	 masterPack[i * m + n] .set(value, suit);
+	     
+	     // set Letter cards
+	     masterPack[i * m + 9].set('T', suit);
+	     masterPack[i * m + 10].set('J', suit);
+	     masterPack[i * m + 11].set('Q', suit);
+	     masterPack[i * m + 12].set('K', suit);
+	     masterPack[i * m].set('A', suit);
+	   }
    }
 }
