@@ -162,7 +162,7 @@ public class Assig3
    {
       System.out.println("Testing Phase 3");
       Deck testDeck = new Deck(2);
-      while (testDeck != null)
+      while (!(testDeck.getTopCard() == 0))
       {
           Card displayCard = testDeck.dealCard();
           System.out.print(displayCard + " / ");
