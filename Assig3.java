@@ -488,7 +488,7 @@ class Deck
      }
    }
    
-   public void init(int numpacks)
+   public void init(int numPacks)
    {
       int cardNumber = 0;
       while (numPacks > 0)
@@ -502,6 +502,7 @@ class Deck
                cardNumber++;
              }
            }
+           numPacks--;
       }
    }
    
