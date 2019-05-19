@@ -518,4 +518,10 @@ class Deck
          cards[randomPosition] = temp;
       }
    }
+   
+   public Card dealCard()
+   {
+      if (cards.length > 0)
+      topcard = cards[cards.length - 1]
+   }
 }
