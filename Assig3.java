@@ -490,7 +490,7 @@ class Deck
    
    public void init(int numPacks)
    {
-      cards = new Card[numPacks * 52];
+      this.cards = new Card[numPacks * 52];
       int cardNumber = 0;
       while (numPacks > 0)
       {
