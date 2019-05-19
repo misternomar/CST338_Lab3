@@ -456,7 +456,7 @@ class Deck
    {
       this.numPacks = numPacks;
       init(numPacks);
-      Deck.masterPack = new Card[52];
+      this.masterPack = new Card[52];
       allocateMasterPack();
       haveAllocatedMasterPack = true;
    }
@@ -465,7 +465,7 @@ class Deck
    {
       this.numPacks = 1;
       init(numPacks);
-      Deck.masterPack = new Card[52];
+      this.masterPack = new Card[52];
       allocateMasterPack();
       haveAllocatedMasterPack = true;
    }
@@ -560,38 +560,38 @@ class Deck
     */
    private static void allocateMasterPack()
    {
-	   int m, n, i;
-	   char value;
-	   Card.Suit suit;
-	   
-	   if (haveAllocatedMasterPack)
-		   return;
-	   
-	   haveAllocatedMasterPack = true;
-	   
-	   // allocate masterPack
-	   masterPack = new Card[52];
-	   
-	   for (m = 0; m < 52; m++)
-	     masterPack[m] = new Card();
-	   
-	   i = 52 / 4; // number of values per suit
-	   
-	   for (m = 0; m < 4; m++)
-	   {
-	     suit = Card.Suit.values()[m];
-	     
-	     // set all the values for the suit defined
-	     // start with number cards
-	     for (value = '2', n = 1; value <= 9; value++, n++)
-	    	 masterPack[i * m + n] .set(value, suit);
-	     
-	     // set Letter cards
-	     masterPack[i * m + 9].set('T', suit);
-	     masterPack[i * m + 10].set('J', suit);
-	     masterPack[i * m + 11].set('Q', suit);
-	     masterPack[i * m + 12].set('K', suit);
-	     masterPack[i * m].set('A', suit);
-	   }
+      int m, n, i;
+      char value;
+      Card.Suit suit;
+      
+      if (haveAllocatedMasterPack)
+         return;
+      
+      haveAllocatedMasterPack = true;
+      
+      // allocate masterPack
+      masterPack = new Card[52];
+      
+      for (m = 0; m < 52; m++)
+        masterPack[m] = new Card();
+      
+      i = 52 / 4; // number of values per suit
+      
+      for (m = 0; m < 4; m++)
+      {
+        suit = Card.Suit.values()[m];
+        
+        // set all the values for the suit defined
+        // start with number cards
+        for (value = '2', n = 1; value <= 9; value++, n++)
+          masterPack[i * m + n] .set(value, suit);
+        
+        // set Letter cards
+        masterPack[i * m + 9].set('T', suit);
+        masterPack[i * m + 10].set('J', suit);
+        masterPack[i * m + 11].set('Q', suit);
+        masterPack[i * m + 12].set('K', suit);
+        masterPack[i * m].set('A', suit);
+      }
    }
 }
