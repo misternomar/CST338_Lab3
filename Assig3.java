@@ -456,18 +456,16 @@ class Deck
    {
       this.numPacks = numPacks;
       init(numPacks);
-      this.masterPack = new Card[52];
+      masterPack = new Card[52];
       allocateMasterPack();
-      haveAllocatedMasterPack = true;
    }
    
    public Deck()
    {
       this.numPacks = 1;
       init(numPacks);
-      this.masterPack = new Card[52];
+      masterPack = new Card[52];
       allocateMasterPack();
-      haveAllocatedMasterPack = true;
    }
       
   
