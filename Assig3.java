@@ -25,6 +25,7 @@ public class Assig3
    {
       testCardClass();
       testHandClass();
+      testDeckClass();
    }
 
    /**
@@ -155,7 +156,20 @@ public class Assig3
       System.out.println("Hand Full");
       return hand;
    }
+
+
+   private static void testDeckClass()
+   {
+      System.out.println("Testing Phase 3");
+      Deck testDeck = new Deck(2);
+      while (testDeck != null)
+      {
+          Card displayCard = testDeck.dealCard();
+          System.out.print(displayCard + " / ");
+      }
+   }
 }
+      
 
 /**
  * Class that contains the members and methods of a playing card
