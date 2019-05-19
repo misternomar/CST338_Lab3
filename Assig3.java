@@ -274,7 +274,7 @@ class Card
    {
       if (errorFlag)
       {
-         return "INVALID";
+         return "[ INVALID ]";
       }
       return this.value + " of " + this.suit;
    }
