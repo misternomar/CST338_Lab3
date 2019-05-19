@@ -430,3 +430,19 @@ class Hand
       return myCards[k];
    }
 }
+
+/**
+ * Class that contains the members and methods of deck(s) of playing cards
+ *
+ * @author Team 1
+ */
+class Deck
+{
+   public static final int MAX_CARDS = 312;
+   
+   private static Card [] masterPack;
+   
+   private Card[] cards;
+   private int topCard;
+   
+}
