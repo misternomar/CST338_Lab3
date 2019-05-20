@@ -23,9 +23,10 @@ public class Assig3
     */
    public static void main(String[] args)
    {
-      testCardClass();
-      testHandClass();
-      testDeckClass();
+      //testCardClass();
+      //testHandClass();
+      //testDeckClass();
+      testHandDeck();
    }
 
    /**
@@ -160,53 +161,156 @@ public class Assig3
 
    private static void testDeckClass()
    {
-      System.out.println("Testing Phase 3");
-      //testing of class Deck with two decks)
-      Deck deck1 = new Deck(2);
-    
-      // unshuffled deck
-      for(int i = 0; i < 52 * 2; i++)
-      {
-         // Displaying the cards dealed as it is dealed.
-         Card dealedCards = deck1.dealCard();
-         System.out.print(dealedCards.toString() + " / ");
-      } 
-      System.out.println("\n"); 
+	 //testing of class Deck with two decks)
+	 Deck deck1 = new Deck(2);
+	 
+	 // unshuffled deck
+	 for(int i = 0; i < 52 * 2; i++)
+	 {
+	    // Displaying the cards dealed as it is dealed.
+	    Card dealedCards = deck1.dealCard();
+	    System.out.print(dealedCards.toString() + " / ");
+	 } 
+	 System.out.println("\n"); 
+
+	 deck1.init(2);
+	 
+	 // shuffled deck
+	 deck1.shuffle();
+	 
+	 for(int i = 0; i < 52 * 2; i++)
+	 {
+	    Card dealedCards = deck1.dealCard();
+	    System.out.print(dealedCards.toString() + " / ");
+	 } 
+	 System.out.println("\n");
+	 System.out.println();
+	 
+	 // testing of class Deck with one deck
+	 deck1.init(1);
+     
+	 // unshuffled deck
+	 for(int i = 0; i < 52; i++)
+     {
+        Card dealedCards = deck1.dealCard();
+        System.out.print(dealedCards.toString() + " / ");
+     } 
+     System.out.println("\n"); 
+
+     deck1.init(1);
+     
+     // shuffled deck
+     deck1.shuffle();
+     for(int i = 0; i < 52; i++)
+     {
+        Card dealedCards = deck1.dealCard();
+        System.out.print(dealedCards.toString() + " / ");
+     } 
+     System.out.println("\n");
+     System.out.println("Press any key to continue...");
+     
+     // prompt user to enter final phase and number input
+     Scanner next = new Scanner(System.in);
+	 next.nextLine();
+     
+   }
    
-      deck1.init(2);
-       
-      // shuffled deck
-      deck1.shuffle();
-       
-      for(int i = 0; i < 52 * 2; i++)
-      {
-         Card dealedCards = deck1.dealCard();
-         System.out.print(dealedCards.toString() + " / ");
-      } 
-      System.out.println("\n");
-      System.out.println();
-       
-      // testing of class Deck with one deck
-      deck1.init(1);
+   // testing both Hand and Deck classes working together
+   private static void testHandDeck()
+   {
+	 int numHands = 0; // set to zero to initialize loop
+	 
+	 Scanner input = new Scanner(System.in);
+	 
+	 // loop user prompt and validate a legal value (anything negative or 
+	 // more than 10 will keep asking for legal input
+	 while (numHands <= 0 || numHands > 10)
+	 {
+		 System.out.println("How many hands? (1 - 10, please): ");
+		 numHands = input.nextInt();
+	 }
+	 
+	// instantiate single Deck and Hand objects
+	 Hand[] hands = new Hand[numHands];
+	 Deck deck = new Deck();
+	 
+	 // create user defined number of hands to deal to
+	 for(int i = 0; i < hands.length; i++)
+	 {
+         hands[i] = new Hand();
+     }
+	 
+	//dealing a deck into user provided hands.
+     while(true)
+     {
+        Card dealedCards = null;
         
-      // unshuffled deck
-      for(int i = 0; i < 52; i++)
-      {
-         Card dealedCards = deck1.dealCard();
-         System.out.print(dealedCards.toString() + " / ");
-      } 
-      System.out.println("\n"); 
-   
-      deck1.init(1);
+        // deal a deck into that many Hand objects, dealing all cards until the deck is empty
+        for(int i = 0; i < hands.length; i++)
+        {
+           dealedCards = deck.dealCard();
+           
+           if(dealedCards == null)
+              break;
+           
+           // deal a single card to each hand, until all hands have one card, then repeat
+           hands[i].takeCard(dealedCards);
+        }
         
-      // shuffled deck
-      deck1.shuffle();
-      for(int i = 0; i < 52; i++)
-      {
-         Card dealedCards = deck1.dealCard();
-         System.out.print(dealedCards.toString() + " / ");
-      } 
-      System.out.println("\n");
+        if(dealedCards == null)
+           break;
+     }
+     
+     // output the unshuffled hands
+     System.out.println();
+     System.out.println("Here are the hands, from the unshuffled deck: ");
+     
+     for(int i = 0; i < hands.length; i++)
+     {
+    	 System.out.println("Hand = " + "( " + hands[i].toString() + " )");
+         System.out.println();
+     }
+     
+     // reset all the hands for second deal of same number of hands
+     for(int i = 0; i < hands.length; i++)
+     {
+        hands[i].resetHand();
+     }
+     
+     // initialize and shuffle the deck
+     deck.init(1);
+     deck.shuffle();
+     
+     // same loop as first deal
+     while(true)
+     {
+        Card dealedCards = null;
+        
+        for(int i = 0; i < hands.length; i++)
+        {
+           dealedCards = deck.dealCard();
+           
+           if(dealedCards == null)
+              break;
+           
+           hands[i].takeCard(dealedCards);
+        }
+        
+        if(dealedCards == null)
+           break;
+     }
+     
+     // output the shuffled hands
+     System.out.println();
+     System.out.println("Here are the hands, from the SHUFFLED deck: ");
+     
+     for(int i = 0; i < hands.length; i++)
+     {
+    	 System.out.println("Hand = " + "( " + hands[i].toString() + " )");
+         System.out.println();
+     }
+     
+     input.close();
    }
 }
       
@@ -607,7 +711,7 @@ class Deck
       
       Card remCard = cards[topCard - 1];
       cards[topCard - 1] = null; 
-      topCard-- ;
+      topCard--;
       
       return remCard;
    }
