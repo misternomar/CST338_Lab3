@@ -163,7 +163,7 @@ public class Assig3
       System.out.println("Testing Phase 3");
       Deck testDeck = new Deck(2);
       Card displayCard = new Card();
-      while (testDeck.getTopCard() != 0)
+      while (testDeck.dealCard() != null)
       {
           displayCard = testDeck.dealCard();
           System.out.print(displayCard + " / ");
@@ -180,7 +180,7 @@ public class Assig3
 class Card
 {
    private static final char DEFAULT_VALUE = 'A';
-   private static final Suit DEFAULT_SUIT = Suit.spades;
+   private static final Suit DEFAULT_SUIT = Suit.spades; 
    
    /**
     * enum of Suits
@@ -498,12 +498,19 @@ class Deck
             cards[k] = new Card();
          
          // re-populate cards[] with the standard 52 × numPacks cards
-         for(int k = 0; k < numPacks; k++)
+         int cardNumber = 0;
+         while (numPacks > 0)
          {
-            for(int i = (52 * k), j = 0; i < (52 * k + 52); i++, j++)
+            char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
+            for (int i = 0; i < 4; i++)
             {
-               cards[i] = masterPack[j];
+              for (int j = 0; j < cardVal.length; j++)
+              {
+                 cards[cardNumber] = new Card(cardVal[j], Card.Suit.values()[i]);
+                 cardNumber++;
+              }
             }
+            numPacks--;
          }
       }
       else
