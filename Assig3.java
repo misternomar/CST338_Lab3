@@ -633,11 +633,20 @@ class Deck
          cards = new Card[topCard];
          for(int k = 0; k < cards.length; k++)
             cards[k] = new Card();
-         
+
+         int cardNumber = 0;
          // re-populate cards[] with the standard 52 × numPacks cards
          while (numPacks > 0)
          {
-            allocateCards(cards);
+            char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
+            for (int i = 0; i < 4; i++)
+            {
+              for (int j = 0; j < cardVal.length; j++)
+              {
+                 cards[cardNumber] = new Card(cardVal[j], Card.Suit.values()[i]);
+                 cardNumber++;
+              }
+            }
             numPacks--;
          }
       }
@@ -713,37 +722,19 @@ class Deck
       
       // allocate masterPack
       masterPack = new Card[52];
-<<<<<<< HEAD
-<<<<<<< HEAD
-      allocateCards(masterPack);
-      
-      /*for (int k = 0; k < masterPack.length; k++)
-         System.out.print(masterPack[k] + " :: ");
-         System.out.println("\n***************************************************************************************************************************");*/
-   }
-
-   private static void allocateCards(Card[] cards)
-   {
-=======
-=======
->>>>>>> parent of 9a82686... took out "new Card" redundancy
-      
-      for (int m = 0; m < 52; m++)
-        masterPack[m] = new Card();
-      
-<<<<<<< HEAD
->>>>>>> parent of 9a82686... took out "new Card" redundancy
-=======
->>>>>>> parent of 9a82686... took out "new Card" redundancy
       int cardNumber = 0;
       char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
       for (int i = 0; i < 4; i++)
       {
         for (int j = 0; j < cardVal.length; j++)
         {
-           cards[cardNumber] = new Card(cardVal[j], Card.Suit.values()[i]);
+           masterPack[cardNumber] = new Card(cardVal[j], Card.Suit.values()[i]);
            cardNumber++;
         }
       }
+      
+      /*for (int k = 0; k < masterPack.length; k++)
+         System.out.print(masterPack[k] + " :: ");
+         System.out.println("\n***************************************************************************************************************************");*/
    }
 }
