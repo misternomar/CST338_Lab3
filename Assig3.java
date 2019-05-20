@@ -722,10 +722,6 @@ class Deck
       
       // allocate masterPack
       masterPack = new Card[52];
-      
-      for (int m = 0; m < 52; m++)
-        masterPack[m] = new Card();
-      
       int cardNumber = 0;
       char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
       for (int k = 0; k < 4; k++)
