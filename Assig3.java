@@ -471,7 +471,6 @@ class Deck
    {
       this.numPacks = numPacks;
       init(numPacks);
-      masterPack = new Card[52];
       allocateMasterPack();
    }
    
@@ -479,7 +478,6 @@ class Deck
    {
       this.numPacks = 1;
       init(numPacks);
-      masterPack = new Card[52];
       allocateMasterPack();
    }
       
