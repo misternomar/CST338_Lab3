@@ -25,7 +25,7 @@ public class Assig3
    {
       //testCardClass();
       //testHandClass();
-      //testDeckClass();
+      testDeckClass();
       testHandDeck();
    }
 
@@ -207,11 +207,8 @@ public class Assig3
         System.out.print(dealedCards.toString() + " / ");
      } 
      System.out.println("\n");
-     System.out.println("Press any key to continue...");
-     
-     // prompt user to enter final phase and number input
-     Scanner next = new Scanner(System.in);
-	 next.nextLine();
+     System.out.println();
+     //System.out.println("Press any key to continue...");
      
    }
    
@@ -311,6 +308,7 @@ public class Assig3
      }
      
      input.close();
+     
    }
 }
       
@@ -519,11 +517,9 @@ class Hand
     */
    public boolean takeCard(Card card)
    {
-      Card newCard = new Card();
-      if (newCard.set(card.getValue(), card.getSuit()))
-      {
-         this.myCards[this.numCards] = newCard;
-         this.numCards++;
+      if(numCards < MAX_CARDS)
+      { 
+         myCards[numCards++] = card;
          return true;
       }
       return false;
