@@ -714,6 +714,7 @@ class Deck
       // allocate masterPack
       masterPack = new Card[52];
 <<<<<<< HEAD
+<<<<<<< HEAD
       allocateCards(masterPack);
       
       /*for (int k = 0; k < masterPack.length; k++)
@@ -724,10 +725,15 @@ class Deck
    private static void allocateCards(Card[] cards)
    {
 =======
+=======
+>>>>>>> parent of 9a82686... took out "new Card" redundancy
       
       for (int m = 0; m < 52; m++)
         masterPack[m] = new Card();
       
+<<<<<<< HEAD
+>>>>>>> parent of 9a82686... took out "new Card" redundancy
+=======
 >>>>>>> parent of 9a82686... took out "new Card" redundancy
       int cardNumber = 0;
       char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
