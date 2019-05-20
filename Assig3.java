@@ -305,7 +305,7 @@ public class Assig3
          System.out.println("Hand = " + "( " + hands[i].toString() + " )");
          System.out.println();
       }
-     
+      
       input.close();
    } 
 }
@@ -715,10 +715,6 @@ class Deck
     */
    private static void allocateMasterPack()
    {
-      int m, n, i;
-      char value;
-      Card.Suit suit;
-      
       if (haveAllocatedMasterPack)
          return;
       
@@ -727,26 +723,22 @@ class Deck
       // allocate masterPack
       masterPack = new Card[52];
       
-      for (m = 0; m < 52; m++)
+      for (int m = 0; m < 52; m++)
         masterPack[m] = new Card();
       
-      i = 52 / 4; // number of values per suit
-      
-      for (m = 0; m < 4; m++)
+      int cardNumber = 0;
+      char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
+      for (int k = 0; k < 4; k++)
       {
-        suit = Card.Suit.values()[m];
-        
-        // set all the values for the suit defined
-        // start with number cards
-        for (value = '2', n = 1; value <= 9; value++, n++)
-          masterPack[i * m + n] .set(value, suit);
-        
-        // set Letter cards
-        masterPack[i * m + 9].set('T', suit);
-        masterPack[i * m + 10].set('J', suit);
-        masterPack[i * m + 11].set('Q', suit);
-        masterPack[i * m + 12].set('K', suit);
-        masterPack[i * m].set('A', suit);
+        for (int j = 0; j < cardVal.length; j++)
+        {
+           masterPack[cardNumber] = new Card(cardVal[j], Card.Suit.values()[k]);
+           cardNumber++;
+        }
       }
+      
+      /*for (int k = 0; k < masterPack.length; k++)
+         System.out.print(masterPack[k] + " :: ");
+         System.out.println("\n***************************************************************************************************************************");*/
    }
 }
