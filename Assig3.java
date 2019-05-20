@@ -635,18 +635,9 @@ class Deck
             cards[k] = new Card();
          
          // re-populate cards[] with the standard 52 × numPacks cards
-         int cardNumber = 0;
          while (numPacks > 0)
          {
-            char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
-            for (int i = 0; i < 4; i++)
-            {
-              for (int j = 0; j < cardVal.length; j++)
-              {
-                 cards[cardNumber] = new Card(cardVal[j], Card.Suit.values()[i]);
-                 cardNumber++;
-              }
-            }
+            allocateCards(cards);
             numPacks--;
          }
       }
@@ -722,19 +713,24 @@ class Deck
       
       // allocate masterPack
       masterPack = new Card[52];
-      int cardNumber = 0;
-      char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
-      for (int k = 0; k < 4; k++)
-      {
-        for (int j = 0; j < cardVal.length; j++)
-        {
-           masterPack[cardNumber] = new Card(cardVal[j], Card.Suit.values()[k]);
-           cardNumber++;
-        }
-      }
+      allocateCards(masterPack);
       
       /*for (int k = 0; k < masterPack.length; k++)
          System.out.print(masterPack[k] + " :: ");
          System.out.println("\n***************************************************************************************************************************");*/
+   }
+
+   private static void allocateCards(Card[] cards)
+   {
+      int cardNumber = 0;
+      char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
+      for (int i = 0; i < 4; i++)
+      {
+        for (int j = 0; j < cardVal.length; j++)
+        {
+           cards[cardNumber] = new Card(cardVal[j], Card.Suit.values()[i]);
+           cardNumber++;
+        }
+      }
    }
 }
