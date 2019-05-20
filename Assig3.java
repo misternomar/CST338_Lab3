@@ -23,8 +23,8 @@ public class Assig3
     */
    public static void main(String[] args)
    {
-      testCardClass();
-      testHandClass();
+      //testCardClass();
+      //testHandClass();
       testDeckClass();
    }
 
@@ -160,14 +160,52 @@ public class Assig3
 
    private static void testDeckClass()
    {
-      System.out.println("Testing Phase 3");
-      Deck testDeck = new Deck(2);
-      Card displayCard = new Card();
-      while (testDeck.dealCard() != null)
-      {
-          displayCard = testDeck.dealCard();
-          System.out.print(displayCard + " / ");
-      }
+	 //testing of class Deck with two decks)
+	 Deck deck1 = new Deck(2);
+	 
+	 // unshuffled deck
+	 for(int i = 0; i < 52 * 2; i++)
+	 {
+	    // Displaying the cards dealed as it is dealed.
+	    Card dealedCards = deck1.dealCard();
+	    System.out.print(dealedCards.toString() + " / ");
+	 } 
+	 System.out.println("\n"); 
+
+	 deck1.init(2);
+	 
+	 // shuffled deck
+	 deck1.shuffle();
+	 
+	 for(int i = 0; i < 52 * 2; i++)
+	 {
+	    Card dealedCards = deck1.dealCard();
+	    System.out.print(dealedCards.toString() + " / ");
+	 } 
+	 System.out.println("\n");
+	 System.out.println();
+	 
+	 // testing of class Deck with one deck
+	 deck1.init(1);
+     
+	 // unshuffled deck
+	 for(int i = 0; i < 52; i++)
+     {
+        Card dealedCards = deck1.dealCard();
+        System.out.print(dealedCards.toString() + " / ");
+     } 
+     System.out.println("\n"); 
+
+     deck1.init(1);
+     
+     // shuffled deck
+     deck1.shuffle();
+     for(int i = 0; i < 52; i++)
+     {
+        Card dealedCards = deck1.dealCard();
+        System.out.print(dealedCards.toString() + " / ");
+     } 
+     System.out.println("\n");
    }
 }
       
