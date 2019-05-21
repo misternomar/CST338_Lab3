@@ -23,10 +23,10 @@ public class Assig3
     */
    public static void main(String[] args)
    {
-      testCardClass();
-      testHandClass();
-      testDeckClass();
-      testHandDeck();
+      //testCardClass(); //Phase 1
+      //testHandClass(); //Phase 2
+      testDeckClass();   //Phase 3
+      testHandDeck();    //Phase 4
    }
 
    /**
@@ -35,14 +35,15 @@ public class Assig3
     */
    private static void testCardClass()
    {
-      System.out.println("Testing Phase 1");
+      //System.out.println("Testing Phase 1");
       // instantiate three cards, two legally, and one illegally 
       Card card1 = new Card();
       Card card2 = new Card('Z', Card.Suit.diamonds);
       Card card3 = new Card('Q', Card.Suit.hearts);
       printThreeCards(card1, card2, card3);
       
-      // make good card bad by set() with an illegal value, and second card vice versa
+      // make good card bad by set() with an illegal value,
+      //and second card vice versa
       card1.set('X', Card.Suit.clubs);
       card2.set('T', Card.Suit.diamonds);     
       System.out.println();
@@ -97,7 +98,7 @@ public class Assig3
     */
    private static void playAllCards(Hand hand)
    {
-      System.out.println("Testing playCard()");
+      //System.out.println("Testing playCard()");
       int totalCards = hand.getNumCards();
       for (int i = 0; i < totalCards; i++) 
       { 
@@ -115,7 +116,7 @@ public class Assig3
     */
    private static void testInspectCard(Hand hand)
    {
-      System.out.println("Testing inspectCard()");
+      //System.out.println("Testing inspectCard()");
       System.out.println(hand.inspectCard(0));
       System.out.println(hand.inspectCard(Hand.MAX_CARDS));
       System.out.println();
@@ -161,7 +162,7 @@ public class Assig3
 
    private static void testDeckClass()
    {
-      System.out.println("Testing Phase 3");
+      //System.out.println("Testing Phase 3");
       //testing of class Deck with two decks)
       Deck deck1 = new Deck(2);
     
@@ -241,7 +242,8 @@ public class Assig3
       {
          Card dealedCards = null;
         
-         // deal a deck into that many Hand objects, dealing all cards until the deck is empty
+         // deal a deck into that many Hand objects,
+         // dealing all cards until the deck is empty
          for (int i = 0; i < hands.length; i++)
          {
             dealedCards = deck.dealCard();
@@ -249,7 +251,8 @@ public class Assig3
             if (dealedCards == null)
                break;
            
-            // deal a single card to each hand, until all hands have one card, then repeat
+            // deal a single card to each hand, 
+            // until all hands have one card, then repeat
             hands[i].takeCard(dealedCards);
          }
         
@@ -710,8 +713,8 @@ class Deck
       return remCard;
    }
    
-   /** this is a private method that will be called by the constructor; will not 
-    *  allow itself to be executed more than once
+   /** this is a private method that will be called by the constructor;
+    *  will not allow itself to be executed more than once
     */
    private static void allocateMasterPack()
    {
@@ -723,7 +726,8 @@ class Deck
       // allocate masterPack
       masterPack = new Card[52];
       int cardNumber = 0;
-      char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
+      char[] cardVal = {'A', '2', '3', '4', '5', '6', '7',
+         '8', '9', 'T', 'J', 'Q', 'K'};
       for (int i = 0; i < 4; i++)
       {
         for (int j = 0; j < cardVal.length; j++)
@@ -735,6 +739,110 @@ class Deck
       
       /*for (int k = 0; k < masterPack.length; k++)
          System.out.print(masterPack[k] + " :: ");
-         System.out.println("\n***************************************************************************************************************************");*/
+         System.out.println("\n******************************************");*/
    }
 }
+
+
+/******************************OutPut****************************************
+K of spades / Q of spades / J of spades / T of spades / 9 of spades / 8 of spade
+s / 7 of spades / 6 of spades / 5 of spades / 4 of spades / 3 of spades / 2 of s
+pades / A of spades / K of hearts / Q of hearts / J of hearts / T of hearts / 9 
+of hearts / 8 of hearts / 7 of hearts / 6 of hearts / 5 of hearts / 4 of hearts 
+/ 3 of hearts / 2 of hearts / A of hearts / K of diamonds / Q of diamonds / J of
+ diamonds / T of diamonds / 9 of diamonds / 8 of diamonds / 7 of diamonds / 6 of
+ diamonds / 5 of diamonds / 4 of diamonds / 3 of diamonds / 2 of diamonds / A of
+ diamonds / K of clubs / Q of clubs / J of clubs / T of clubs / 9 of clubs / 8 o
+f clubs / 7 of clubs / 6 of clubs / 5 of clubs / 4 of clubs / 3 of clubs / 2 of 
+clubs / A of clubs / K of spades / Q of spades / J of spades / T of spades / 9 o
+f spades / 8 of spades / 7 of spades / 6 of spades / 5 of spades / 4 of spades /
+ 3 of spades / 2 of spades / A of spades / K of hearts / Q of hearts / J of hear
+ts / T of hearts / 9 of hearts / 8 of hearts / 7 of hearts / 6 of hearts / 5 of 
+hearts / 4 of hearts / 3 of hearts / 2 of hearts / A of hearts / K of diamonds /
+ Q of diamonds / J of diamonds / T of diamonds / 9 of diamonds / 8 of diamonds /
+ 7 of diamonds / 6 of diamonds / 5 of diamonds / 4 of diamonds / 3 of diamonds /
+ 2 of diamonds / A of diamonds / K of clubs / Q of clubs / J of clubs / T of clu
+bs / 9 of clubs / 8 of clubs / 7 of clubs / 6 of clubs / 5 of clubs / 4 of clubs
+ / 3 of clubs / 2 of clubs / A of clubs / 
+
+Q of diamonds / 5 of clubs / 3 of diamonds / 8 of spades / 6 of spades / K of sp
+ades / A of hearts / 6 of spades / 9 of hearts / J of spades / K of clubs / 9 of
+ diamonds / 3 of clubs / 5 of spades / A of clubs / 4 of hearts / J of diamonds 
+/ 4 of spades / 6 of hearts / T of hearts / 4 of clubs / 4 of diamonds / 9 of sp
+ades / 6 of hearts / 8 of diamonds / 7 of hearts / T of spades / 3 of spades / 4
+ of clubs / 6 of diamonds / 2 of spades / 6 of clubs / 8 of clubs / J of diamond
+s / 6 of diamonds / 9 of clubs / 2 of clubs / 5 of clubs / 7 of clubs / K of clu
+bs / A of spades / 7 of diamonds / 2 of hearts / K of diamonds / Q of clubs / 7 
+of hearts / 5 of hearts / 5 of diamonds / 9 of diamonds / Q of diamonds / 6 of c
+lubs / 9 of clubs / Q of hearts / 3 of spades / 4 of spades / 2 of diamonds / J 
+of clubs / 5 of hearts / A of spades / J of hearts / Q of spades / 4 of hearts /
+ 3 of hearts / Q of spades / 7 of diamonds / 2 of clubs / T of hearts / A of dia
+monds / K of hearts / T of diamonds / 9 of hearts / K of spades / 8 of spades / 
+9 of spades / 8 of hearts / 5 of spades / K of diamonds / A of hearts / J of hea
+rts / A of clubs / 3 of diamonds / Q of hearts / T of clubs / 3 of hearts / K of
+ hearts / 7 of spades / 5 of diamonds / 8 of clubs / 7 of clubs / J of spades / 
+2 of hearts / 8 of diamonds / T of spades / 7 of spades / 4 of diamonds / J of c
+lubs / A of diamonds / Q of clubs / 2 of spades / T of diamonds / 2 of diamonds 
+/ T of clubs / 3 of clubs / 8 of hearts / 
+
+
+K of spades / Q of spades / J of spades / T of spades / 9 of spades / 8 of spade
+s / 7 of spades / 6 of spades / 5 of spades / 4 of spades / 3 of spades / 2 of s
+pades / A of spades / K of hearts / Q of hearts / J of hearts / T of hearts / 9 
+of hearts / 8 of hearts / 7 of hearts / 6 of hearts / 5 of hearts / 4 of hearts 
+/ 3 of hearts / 2 of hearts / A of hearts / K of diamonds / Q of diamonds / J of
+ diamonds / T of diamonds / 9 of diamonds / 8 of diamonds / 7 of diamonds / 6 of
+ diamonds / 5 of diamonds / 4 of diamonds / 3 of diamonds / 2 of diamonds / A of
+ diamonds / K of clubs / Q of clubs / J of clubs / T of clubs / 9 of clubs / 8 o
+f clubs / 7 of clubs / 6 of clubs / 5 of clubs / 4 of clubs / 3 of clubs / 2 of 
+clubs / A of clubs / 
+
+K of diamonds / K of hearts / Q of clubs / T of hearts / J of diamonds / 5 of cl
+ubs / Q of hearts / 4 of diamonds / 8 of spades / 6 of spades / A of diamonds / 
+A of clubs / 8 of clubs / 2 of hearts / 2 of diamonds / 6 of diamonds / 7 of clu
+bs / A of hearts / 3 of hearts / 7 of spades / 3 of diamonds / 3 of spades / 2 o
+f clubs / A of spades / 9 of hearts / 6 of hearts / 5 of spades / 9 of diamonds 
+/ 4 of spades / J of clubs / T of diamonds / T of spades / 8 of hearts / 2 of sp
+ades / 7 of diamonds / Q of spades / Q of diamonds / J of spades / 8 of diamonds
+ / K of spades / J of hearts / 3 of clubs / K of clubs / 9 of clubs / 6 of clubs
+ / 7 of hearts / 4 of hearts / 4 of clubs / 9 of spades / T of clubs / 5 of hear
+ts / 5 of diamonds / 
+
+
+How many hands? (1 - 10, please): 
+5
+
+Here are the hands, from the unshuffled deck: 
+Hand = ( K of spades, 8 of spades, 3 of spades, J of hearts, 6 of hearts, A of h
+earts, 9 of diamonds, 4 of diamonds, Q of clubs, 7 of clubs, 2 of clubs )
+
+Hand = ( Q of spades, 7 of spades, 2 of spades, T of hearts, 5 of hearts, K of d
+iamonds, 8 of diamonds, 3 of diamonds, J of clubs, 6 of clubs, A of clubs )
+
+Hand = ( J of spades, 6 of spades, A of spades, 9 of hearts, 4 of hearts, Q of d
+iamonds, 7 of diamonds, 2 of diamonds, T of clubs, 5 of clubs )
+
+Hand = ( T of spades, 5 of spades, K of hearts, 8 of hearts, 3 of hearts, J of d
+iamonds, 6 of diamonds, A of diamonds, 9 of clubs, 4 of clubs )
+
+Hand = ( 9 of spades, 4 of spades, Q of hearts, 7 of hearts, 2 of hearts, T of d
+iamonds, 5 of diamonds, K of clubs, 8 of clubs, 3 of clubs )
+
+
+Here are the hands, from the SHUFFLED deck: 
+Hand = ( A of clubs, J of diamonds, 7 of spades, 4 of clubs, 8 of clubs, 4 of sp
+ades, 9 of spades, 7 of diamonds, K of clubs, 8 of spades, 5 of hearts )
+
+Hand = ( 3 of clubs, 3 of spades, 3 of hearts, 9 of clubs, 6 of hearts, A of dia
+monds, T of hearts, Q of spades, Q of clubs, Q of diamonds, 3 of diamonds )
+
+Hand = ( J of clubs, 2 of clubs, 2 of diamonds, A of hearts, Q of hearts, 4 of d
+iamonds, 9 of diamonds, 6 of diamonds, 6 of clubs, 7 of hearts )
+
+Hand = ( K of diamonds, K of hearts, T of spades, J of spades, A of spades, 5 of
+ spades, T of clubs, 5 of diamonds, 9 of hearts, 5 of clubs )
+
+Hand = ( T of diamonds, 4 of hearts, 2 of hearts, J of hearts, 8 of hearts, 8 of
+ diamonds, 2 of spades, K of spades, 7 of clubs, 6 of spades )
+
+****************************************************************************/
