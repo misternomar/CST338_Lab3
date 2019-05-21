@@ -384,6 +384,8 @@ class Card
    {
       String goodChars = "TJQKA";
       boolean valueGood = goodChars.contains(Character.toString(value));
+      //no upper bound check necessary because 9 is the largest digit
+      //that can be represented by a single character.
       if ((Character.isDigit(value) && value > 1) || valueGood)
       {
          return true;
@@ -453,7 +455,8 @@ class Card
          this.errorFlag = true;
          return false;
       }
-      else // if good values are passed, they are stored and errorFlag is set to false
+      //if good values are passed, they are stored and errorFlag is set to false
+      else
       {
          this.errorFlag = false;
          return true;
@@ -641,12 +644,14 @@ class Deck
          // re-populate cards[] with the standard 52 × numPacks cards
          while (numPacks > 0)
          {
-            char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
+            char[] cardVal = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 
+                  'T', 'J', 'Q', 'K'};
             for (int i = 0; i < 4; i++)
             {
               for (int j = 0; j < cardVal.length; j++)
               {
-                 cards[cardNumber] = new Card(cardVal[j], Card.Suit.values()[i]);
+                 cards[cardNumber] = new Card(cardVal[j],
+                                              Card.Suit.values()[i]);
                  cardNumber++;
               }
             }
