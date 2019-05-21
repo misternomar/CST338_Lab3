@@ -607,7 +607,7 @@ class Deck
    private int numPacks;
    public static boolean haveAllocatedMasterPack = false;
    
-   /** constructors that populate the arrays and assigns initial values to
+   /** constructors that populate the arrays and assign initial values to
     *  members. Overload so that if no parameters are passed, 1 pack is assumed.
     *  @param numPacks  
     */ 
